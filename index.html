@@ -15,24 +15,31 @@
     </div>
 </body>
 <script>
+    function viewDoneList() {
+        localStorage.setItem("outtext", localStorage.getItem("outtext") + ";" + document.querySelector("#donethings").value)
+        let outtextArray = localStorage.getItem("outtext").split(";")
+
+        document.getElementById('outtext').innerHTML = "";
+        outtextArray.forEach(element => {
+            const li = document.createElement("li");
+            const span = document.createElement("span");
+            span.innerText = element
+            li.appendChild(span)
+            document.getElementById('outtext').appendChild(li)
+            console.log(element)
+        });
+        document.querySelector("#donethings").value = ""
+    }
+
+    window.addEventListener("load", function(event) {
+        viewDoneList()
+    });
+
     function keyevent() {
         var keycode = event.keyCode;
         console.log('키를 눌렀을 때...' + keycode)
         if(keycode === 13) {
-            localStorage.setItem("outtext", localStorage.getItem("outtext") + ";" + document.querySelector("#donethings").value)
-            let outtextArray = localStorage.getItem("outtext").split(";")
-
-            document.getElementById('outtext').innerHTML = "";
-            outtextArray.forEach(element => {
-                const li = document.createElement("li");
-                const span = document.createElement("span");
-                span.innerText = element
-                li.appendChild(span)
-                document.getElementById('outtext').appendChild(li)
-                console.log(element)
-            });
-            document.querySelector("#donethings").value = ""
-
+            viewDoneList()
         }
     }
 </script>
