@@ -11,21 +11,21 @@
         <input type="text" onKeyPress="keyevent();" id="donethings"/>
     </div>
     <div>
-        <ul id="outtext"></ul>
+        <ul id="done_list"></ul>
     </div>
 </body>
 <script>
     function renderList() {
-        localStorage.setItem("outtext", localStorage.getItem("outtext") + ";" + document.querySelector("#donethings").value)
-        let outtextArray = localStorage.getItem("outtext").split(";")
+        localStorage.setItem("done_list", localStorage.getItem("done_list") + ";" + document.querySelector("#donethings").value)
+        let doneList = localStorage.getItem("done_list").split(";")
 
-        document.getElementById('outtext').innerHTML = "";
-        outtextArray.forEach(element => {
+        document.getElementById('done_list').innerHTML = "";
+        doneList.forEach(element => {
             const li = document.createElement("li");
             const span = document.createElement("span");
             span.innerText = element
             li.appendChild(span)
-            document.getElementById('outtext').appendChild(li)
+            document.getElementById('done_list').appendChild(li)
             console.log(element)
         });
         document.querySelector("#donethings").value = ""
