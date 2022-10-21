@@ -16,7 +16,6 @@
 </body>
 <script>
     function renderList() {
-        localStorage.setItem("done_list", localStorage.getItem("done_list") + ";" + document.querySelector("#donethings").value)
         let doneList = localStorage.getItem("done_list").split(";")
 
         document.getElementById('done_list').innerHTML = "";
@@ -39,6 +38,7 @@
         var keycode = event.keyCode;
         console.log('키를 눌렀을 때...' + keycode)
         if(keycode === 13) {
+            localStorage.setItem("done_list", localStorage.getItem("done_list") + ";" + document.querySelector("#donethings").value)
             renderList()
         }
     }
