@@ -20,6 +20,9 @@
 
         document.getElementById('done_list').innerHTML = "";
         doneList.forEach(element => {
+            if(element === "") {
+                return;
+            }
             const li = document.createElement("li");
             const span = document.createElement("span");
             span.innerText = element
@@ -30,9 +33,11 @@
         document.querySelector("#donethings").value = ""
     }
 
-    window.addEventListener("load", function(event) {
-        renderList()
-    });
+    function initList() {
+        if(localStorage.getItem("done_list") === null) {
+            localStorage.setItem("done_list", "");
+        }
+    }
 
     function keyevent() {
         var keycode = event.keyCode;
@@ -42,5 +47,10 @@
             renderList()
         }
     }
+
+    window.onload = function() {
+        initList()
+        renderList()
+    };
 </script>
 </html>
