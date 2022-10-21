@@ -17,6 +17,13 @@
 <script>
     const DONE_LIST_ID = "done_list";
 
+    function addItem() {
+        localStorage.setItem(
+            DONE_LIST_ID, 
+            localStorage.getItem(DONE_LIST_ID) + ";" + document.querySelector("#donethings").value
+        )
+    }
+
     function renderList() {
         let doneList = localStorage.getItem(DONE_LIST_ID).split(";")
 
@@ -43,10 +50,7 @@
     function keyevent() {
         var keycode = event.keyCode;
         if(keycode === 13) {
-            localStorage.setItem(
-                DONE_LIST_ID, 
-                localStorage.getItem(DONE_LIST_ID) + ";" + document.querySelector("#donethings").value
-            )
+            addItem();
             renderList();
         }
     }
