@@ -8,7 +8,7 @@
 </head>
 <body>
     <div>
-        <input type="text" onKeyPress="keyevent();" id="donethings"/>
+        <input type="text" onKeyPress="onKeyPress();" id="donethings"/>
     </div>
     <div>
         <ul id="done_list"></ul>
@@ -47,7 +47,7 @@
         }
     }
 
-    function keyevent() {
+    function onKeyPress() {
         var keycode = event.keyCode;
         if(keycode === 13) {
             addItem();
