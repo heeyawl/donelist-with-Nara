@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <input type="text" onKeyPress="keyevent();" id="donethings"/>
+    </div>
+    <div>
+        <ul id="outtext">
+            <li>
+            <span>11</span>
+            </li>
+        </ul>
+
+    </div>
+
+</body>
+<script>
+    function keyevent() {
+        var keycode = event.keyCode;
+        console.log('키를 눌렀을 때...' + keycode)
+        if(keycode === 13) {
+            localStorage.setItem("outtext", localStorage.getItem("outtext") + ";" + document.querySelector("#donethings").value)
+            let outtextArray = localStorage.getItem("outtext").split(";")
+
+            document.getElementById('outtext').innerHTML = "";
+            outtextArray.forEach(element => {
+                const li = document.createElement("li");
+                const span = document.createElement("span");
+                span.innerText = element
+                li.appendChild(span)
+                document.getElementById('outtext').appendChild(li)
+                console.log(element)
+            });
+            document.querySelector("#donethings").value = ""
+
+        }
+    }
+</script>
+</html>
