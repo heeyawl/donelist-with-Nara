@@ -15,7 +15,7 @@
     </div>
 </body>
 <script>
-    function viewDoneList() {
+    function renderList() {
         localStorage.setItem("outtext", localStorage.getItem("outtext") + ";" + document.querySelector("#donethings").value)
         let outtextArray = localStorage.getItem("outtext").split(";")
 
@@ -39,7 +39,7 @@
         var keycode = event.keyCode;
         console.log('키를 눌렀을 때...' + keycode)
         if(keycode === 13) {
-            viewDoneList()
+            renderList()
         }
     }
 </script>
