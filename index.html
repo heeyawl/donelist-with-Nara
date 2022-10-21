@@ -15,10 +15,12 @@
     </div>
 </body>
 <script>
-    function renderList() {
-        let doneList = localStorage.getItem("done_list").split(";")
+    const DONE_LIST_ID = "done_list";
 
-        document.getElementById('done_list').innerHTML = "";
+    function renderList() {
+        let doneList = localStorage.getItem(DONE_LIST_ID).split(";")
+
+        document.getElementById(DONE_LIST_ID).innerHTML = "";
         doneList.forEach(element => {
             if(element === "") {
                 return;
@@ -27,8 +29,7 @@
             const span = document.createElement("span");
             span.innerText = element
             li.appendChild(span)
-            document.getElementById('done_list').appendChild(li)
-            console.log(element)
+            document.getElementById(DONE_LIST_ID).appendChild(li)
         });
         document.querySelector("#donethings").value = ""
     }
@@ -41,10 +42,12 @@
 
     function keyevent() {
         var keycode = event.keyCode;
-        console.log('키를 눌렀을 때...' + keycode)
         if(keycode === 13) {
-            localStorage.setItem("done_list", localStorage.getItem("done_list") + ";" + document.querySelector("#donethings").value)
-            renderList()
+            localStorage.setItem(
+                DONE_LIST_ID, 
+                localStorage.getItem(DONE_LIST_ID) + ";" + document.querySelector("#donethings").value
+            )
+            renderList();
         }
     }
 
